@@ -226,7 +226,7 @@ class SiteController extends Controller
 //        $models = Commentsbase::find()->all();
         $models = Commentsbase::findBySql("SELECT * FROM commentsbase WHERE id < 1225" )
 
-            -> add("id")->all();
+            -> addOrderBy("id")->all();
 
 
         return $this->render('baseview', [
