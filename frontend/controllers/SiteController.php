@@ -14,6 +14,8 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\Commentsbase;
+use frontend\models\CRUD;
+use yii\db\QueryBuilder;
 
 /**
  * Site controller
@@ -219,22 +221,93 @@ class SiteController extends Controller
      */
     public function actionBaseview()
     {
-
-//        $users = Yii::$app->db->createCommand();
-//        $model= $users->select('*')->from('commentsbase')->queryAll();
-
-//        $models = Commentsbase::find()->all();
+        //        $models = Commentsbase::find()->all();
         $models = Commentsbase::findBySql("SELECT * FROM commentsbase WHERE id < 1225" )
-
             -> addOrderBy("id")->all();
-
 
         return $this->render('baseview', [
             'models' => $models
-            ]);
-
-
+        ]);
     }
 
+
+    public function actionBasecrud( $acti="" )
+    {
+        $models = Commentsbase::findBySql("SELECT * FROM commentsbase WHERE id < 1225" )
+            -> addOrderBy("id")->all();
+
+        if ( $acti=="ins") {
+            echo " INSERT ";
+
+            //        $models = Commentsbase::findBySql("SELECT * FROM commentsbase WHERE id < 1225" ) -> addOrderBy("id")->all();
+            return $this->render('basecrud', [
+                'models' => $models
+            ]);
+
+        }
+        if ( $acti=="del") {
+            echo " DELETE ";
+            //        $models = Commentsbase::findBySql("SELECT * FROM commentsbase WHERE id < 1225" ) -> addOrderBy("id")->all();
+            return $this->render('basecrud', [
+                'models' => $models
+            ]);
+
+        }
+
+
+        if ( $acti=="")    {
+            echo " READ ";
+        }
+
+        $models = Commentsbase::find()->all();
+        //        $models = Commentsbase::findBySql("SELECT * FROM commentsbase WHERE id < 1225" ) -> addOrderBy("id")->all();
+        return $this->render('basecrud', [
+            'models' => $models
+        ]);
+    }
+
+
+    public function actionInsert( $id )
+    {
+            $contact = new Commentsbase();
+            $contact->text="dgsdfgdafgsdfg";
+            $contact->save();
+
+        $models = Commentsbase::findBySql("SELECT * FROM commentsbase " )
+            -> addOrderBy("id")->all();
+
+        return $this->render('basecrud', [
+            'models' => $models
+        ]);
+
+    }
+    public function actionUpdate( $id, $text="sdfgsdg->>>" )
+    {
+        Yii::$app->db->createCommand()
+            ->update('commentsbase', ['text' => $text], ['id' => $id] )
+            ->execute();
+
+        $models = Commentsbase::findBySql("SELECT * FROM commentsbase " )
+            -> addOrderBy("id")->all();
+
+        return $this->render('basecrud', [
+            'models' => $models
+        ]);
+
+    }
+    public function actionDelete( $id )
+    {
+        Yii::$app->db->createCommand()
+            ->delete('commentsbase', ['id' => $id])
+            ->execute();
+
+        $models = Commentsbase::findBySql("SELECT * FROM commentsbase " )
+            -> addOrderBy("id")->all();
+
+        return $this->render('basecrud', [
+            'models' => $models
+        ]);
+
+    }
 
 }

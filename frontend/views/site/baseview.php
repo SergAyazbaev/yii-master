@@ -10,7 +10,7 @@ use yii\helpers\HTMLPurifier;
 
 
 
-$this->title = 'BASEVIEW';
+$this->title = 'Просмотр таблицы';
 $this->params['breadcrumbs'][] = $this->title;
 
 
@@ -18,19 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>BASEVIEW BASEVIEW BASEVIEW BASEVIEW </p>
-
     <code><?= __FILE__ ?></code>
+
 </div>
-
-<?=var_dump($_SESSION);  ?>
-
-<?=var_dump($_REQUEST);  ?>
-<br>
-<br>
-<? var_dump($models);  ?>
-<br>
-<br>
+<br><br><br>
 
 <?php
 foreach ($models as $model){
@@ -54,21 +45,14 @@ foreach ($models as $model){
 
 }
 
+echo '<br><br><br>';
 
-//echo \yii\widgets\DetailView::widget([
-//        'models'=> $models['id']
-//    ])
 foreach ($models as $model){
     if ( (int) $model->id > 0)
         echo "<h2>".Html::encode($model->id)." -> ".HtmlPurifier::process($model->text)." </h2> " ;
 
 
 }
-
-
-//echo \yii\widgets\DetailView::widget([
-//        'models'=> $models['id']
-//    ])
 
 ?>
 
