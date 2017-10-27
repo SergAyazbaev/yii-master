@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\base\InvalidParamException;
+use yii\rest\CreateAction;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -213,9 +214,26 @@ class SiteController extends Controller
     }
 
 
+    /**
+     * @return string
+     */
     public function actionBaseview()
     {
-        return $this->render('baseview');
+
+//        $users = Yii::$app->db->createCommand();
+//        $model= $users->select('*')->from('commentsbase')->queryAll();
+
+//        $models = Commentsbase::find()->all();
+        $models = Commentsbase::findBySql("SELECT * FROM commentsbase WHERE id < 1225" )
+
+            -> add("id")->all();
+
+
+        return $this->render('baseview', [
+            'models' => $models
+            ]);
+
+
     }
 
 
