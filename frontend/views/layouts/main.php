@@ -40,6 +40,8 @@ AppAsset::register($this);
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'BASE', 'url' => ['/site/baseview']],
         ['label' => 'CRUD Read', 'url' => ['/site/basecrud']],
+        ['label' => 'CRUD commentsbase', 'url' => ['/commentsbase']],
+
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
