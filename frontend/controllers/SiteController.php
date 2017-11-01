@@ -273,12 +273,7 @@ class SiteController extends Controller
             $contact->text="dgsdfgdafgsdfg";
             $contact->save();
 
-        $models = Commentsbase::findBySql("SELECT * FROM commentsbase " )
-            -> addOrderBy("id")->all();
-
-        return $this->render('basecrud', [
-            'models' => $models
-        ]);
+        return $this->redirect('basecrud');
 
     }
     public function actionUpdate( $id, $text="sdfgsdg->>>" )
@@ -287,12 +282,7 @@ class SiteController extends Controller
             ->update('commentsbase', ['text' => $text], ['id' => $id] )
             ->execute();
 
-        $models = Commentsbase::findBySql("SELECT * FROM commentsbase " )
-            -> addOrderBy("id")->all();
-
-        return $this->render('basecrud', [
-            'models' => $models
-        ]);
+        return $this->redirect('basecrud');
 
     }
     public function actionDelete( $id )
@@ -301,12 +291,7 @@ class SiteController extends Controller
             ->delete('commentsbase', ['id' => $id])
             ->execute();
 
-        $models = Commentsbase::findBySql("SELECT * FROM commentsbase " )
-            -> addOrderBy("id")->all();
-
-        return $this->render('basecrud', [
-            'models' => $models
-        ]);
+        return $this->redirect('basecrud');
 
     }
 

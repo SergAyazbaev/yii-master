@@ -43,7 +43,9 @@ return [
             'showScriptName' => false,
             'rules' => [
                     '' => 'site/index',
-                    'action'=>'site/action',
+                    'commentsbase'=>'commentsbase',
+                    '<action>'=>'site/<action>',
+
 
             ],
         ],
